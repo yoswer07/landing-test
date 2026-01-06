@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@custom-variant hover (&:hover);
+
+html {
+    scroll-behavior: smooth;
+}
+
+@theme {
+  /* Definimos el color primario y su variante dark */
+  --color-primary: #4ac9c3;
+  --color-primary-hover: #3ea09a;
+  --color-primary-dark: #3db3ad;
+
+  /* Definimos el color secundario y su variante light */
+  --color-secondary: #303351;
+  --color-secondary-light: #3f436e;
+
+  /* También puedes definir fuentes o distancias si quieres */
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+}
+
+@layer components {
+  /* Ahora puedes usar esas variables directamente con @apply */
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-hover text-white font-bold py-3 px-8 rounded-lg 
+           transition duration-300 transform hover:scale-105 cursor-pointer shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply cursor-pointer w-full md:w-auto bg-secondary text-white px-10 py-3 rounded-xl font-bold hover:bg-primary transition-colors duration-200
+  }
+
+  .input-field {
+    @apply w-full mt-1 border border-gray-300 rounded-lg p-3 outline-none
+           focus:ring-2 focus:ring-primary focus:border-transparent transition-all;
+  }
+
+  .checkbox-field {
+    /* Quitamos el estilo nativo para controlarlo nosotros */
+    appearance: none; 
+    
+    @apply h-5 w-5 mt-1 border border-gray-300 rounded-md bg-white
+           focus:ring-2 focus:ring-primary focus:ring-offset-2 outline-none
+           transition-all cursor-pointer inline-block align-middle;
+    
+    /* Configuración para el icono de la tilde */
+    background-origin: border-box;
+    background-clip: padding-box;
+  }
+
+  .checkbox-field:checked {
+    /* Cuando está seleccionado, cambiamos el fondo al color primario */
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    
+    /* Insertamos la tilde blanca como SVG */
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .radio-field {
+    /* Reset nativo */
+    appearance: none;
+    
+    /* Estilos base (Circular) */
+    @apply h-5 w-5 border border-gray-300 rounded-full bg-white
+           focus:ring-2 focus:ring-primary focus:ring-offset-2 outline-none
+           transition-all cursor-pointer inline-block align-middle;
+  }
+
+  .radio-field:checked {
+    /* Fondo primario cuando se selecciona */
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    
+    /* Dibujamos el "punto" blanco central con un SVG de un círculo */
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .service-card {
+    @apply bg-white p-6 rounded-xl shadow-lg border-t-4 transition duration-300 hover:shadow-xl
+  }
+
+  .hiw-card {
+    @apply flex flex-col items-center text-center p-6 bg-gray-50 rounded-xl shadow-md transition duration-300 hover:shadow-lg hover:bg-white
+  }
+
+  .input-name {
+    @apply block text-sm font-semibold text-gray-600
+  }
+
+  .aside-button {
+    @apply cursor-pointer flex-1 md:w-full text-left px-6 py-3 transition-all
+  }
+
+  .login-field {
+    @apply appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm
+  }
+}
