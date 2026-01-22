@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Package, Truck, Box, Warehouse, Info, CircleCheck  } from '@lucide/svelte';
+	import { Package, Truck, Box, Warehouse, Info, CircleCheck, ArrowRight } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 	import { auth } from '../../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
@@ -25,102 +25,103 @@
 		}
 	}
 
-    const fbaServices = [
-        {
-            name: "Labeling (Etiquetado)",
-            prices: ["0 a 1,000 und: $0.65", "1,001 a 3,000 und: $0.55"]
-        },
-        {
-            name: "Labeling + Polybag",
-            prices: ["0 a 1,000 und: $0.90", "1,001 a 3,000 und: $0.80", "3,000+ und: $0.75"]
-        },
-        {
-            name: "Labeling + Polybag (2-3 und)",
-            prices: ["0 a 1,000 und: $1.15", "1,001 a 3,000 und: $1.10", "3,000+ und: $1"]
-        },
-        {
-            name: "Glass Wrapping",
-            prices: ["1 und: $1.20", "Bundle 2-3 und: $1.85", "Bundle 4-6 und: $2.10"]
-        }
-    ];
+	const fbaServices = [
+		{
+			name: 'Labeling (Etiquetado)',
+			prices: ['0 a 1,000 und: $0.75', '1,001 a 3,000 und: $0.65']
+		},
+		{
+			name: 'Labeling + Polybag',
+			prices: ['0 a 1,000 und: $1.00', '1,001 a 3,000 und: $0.90', '3,000+ und: $0.85']
+		},
+		{
+			name: 'Labeling + Polybag (2-3 und)',
+			prices: ['0 a 1,000 und: $1.25', '1,001 a 3,000 und: $1.20', '3,000+ und: $1.10']
+		},
+		{
+			name: 'Glass Wrapping',
+			prices: ['Sobre: $1.00', '1 und: $1.30', 'Bundle 2-3 und: $1.80', 'Bundle 4-6 und: $2.30', 'Bundle 12 und: $2.80']
+		}
+	];
 </script>
 
 <section class="bg-gray-50 py-16 px-6">
-    <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-secondary mb-4">
-                Tarifas <span class="text-primary">Transparentes</span>
-            </h1>
-            <p class="text-gray-600 max-w-2xl mx-auto">
-                Soluciones logísticas adaptadas al volumen de tu negocio. Sin letras chiquitas.
-            </p>
-        </div>
+	<div class="max-w-6xl mx-auto">
+		<div class="text-center mb-16">
+			<h1 class="text-4xl md:text-5xl font-extrabold text-secondary mb-4">
+				Tarifas <span class="text-primary">Transparentes</span>
+			</h1>
+			<p class="text-gray-600 max-w-2xl mx-auto">
+				Soluciones logísticas adaptadas al volumen de tu negocio. Sin letras chiquitas.
+			</p>
+		</div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            <div class="lg:col-span-2 space-y-6">
-                <div class="flex items-center gap-3 mb-2">
-                    <Package class="text-primary" size={28} />
-                    <h2 class="text-2xl font-bold text-secondary">FBA (Amazon Fulfillment)</h2>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {#each fbaServices as service}
-                        <div class="service-card border-primary/20">
-                            <h3 class="font-bold text-secondary mb-4 flex items-center gap-2">
-                                <CircleCheck  size={18} class="text-primary" />
-                                {service.name}
-                            </h3>
-                            <ul class="space-y-2">
-                                {#each service.prices as price}
-                                    <li class="flex justify-between text-sm border-b border-gray-100 pb-1">
-                                        <span class="text-gray-600">{price.split(':')[0]}</span>
-                                        <span class="font-bold text-secondary">{price.split(':')[1]}</span>
-                                    </li>
-                                {/each}
-                            </ul>
-                        </div>
-                    {/each}
-                </div>
-            </div>
+		<div class="flex flex-col gap-12">
+			<div class="lg:col-span-2 space-y-6">
+				<div class="flex items-center gap-3 mb-2">
+					<Package class="text-primary" size={28} />
+					<h2 class="text-2xl font-bold text-secondary">FBA (Amazon Fulfillment)</h2>
+				</div>
 
-            <div class="space-y-6">
-                <div class="flex items-center gap-3 mb-2">
-                    <Truck class="text-primary" size={28} />
-                    <h2 class="text-2xl font-bold text-secondary">FBM (Multichannel)</h2>
-                </div>
-                
-                <div class="service-card border-secondary bg-secondary text-white">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                            <span class="text-sm opacity-80">0 a 1,000 und/mes</span>
-                            <span class="text-xl font-bold text-primary">$2.60</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                            <span class="text-sm opacity-80">2,001 a 4,000 und/mes</span>
-                            <span class="text-xl font-bold text-primary">$1.90</span>
-                        </div>
-                        <div class="flex justify-between items-center pb-2">
-                            <span class="text-sm opacity-80">4,000+ und</span>
-                            <span class="text-lg font-bold">Consultar</span>
-                        </div>
-                    </div>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					{#each fbaServices as service}
+						<div class="service-card border-primary/20">
+							<h3 class="font-bold text-secondary mb-4 flex items-center gap-2">
+								<CircleCheck size={18} class="text-primary" />
+								{service.name}
+							</h3>
+							<ul class="space-y-2">
+								{#each service.prices as price}
+									<li class="flex justify-between text-sm border-b border-gray-100 pb-1">
+										<span class="text-gray-600">{price.split(':')[0]}</span>
+										<span class="font-bold text-secondary">{price.split(':')[1]}</span>
+									</li>
+								{/each}
+							</ul>
+						</div>
+					{/each}
+				</div>
+			</div>
 
-                    <div class="mt-6 p-4 bg-white/10 rounded-lg text-xs space-y-2">
-                        <p class="flex items-start gap-2">
-                            <Info size={14} class="text-primary shrink-0" />
-                            <span>Productos frágiles o aerosoles: <b>+$0.50</b></span>
-                        </p>
-                        <p class="flex items-start gap-2">
-                            <Info size={14} class="text-primary shrink-0" />
-                            <span>Corte envío Same Day: <b>2:00 PM (ET)</b></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<div class="space-y-6">
+				<div class="flex items-center gap-3 mb-2">
+					<Truck class="text-primary" size={28} />
+					<h2 class="text-2xl font-bold text-secondary">FBM (Multichannel)</h2>
+				</div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+				<div
+					class="service-card text-gray-600 border-primary/20 p-8 md:p-12 shadow-xl relative overflow-hidden"
+				>
+					<div class="absolute top-0 right-0 opacity-10 -mr-8 -mt-8">
+						<Truck size={160} />
+					</div>
+
+					<div class="relative z-10 text-center flex flex-col items-center">
+						<h3 class="text-2xl font-bold mb-4">Tarifas Personalizadas</h3>
+
+						<p class="mb-8 max-w-md mx-auto">
+							Ofrecemos soluciones de despacho multicanal adaptadas al volumen real y necesidades
+							específicas de tu operación.
+						</p>
+
+						<div class="space-y-4 w-full max-w-sm">
+							<button
+								on:click={handleQuoteClick}
+								class="btn-primary w-full flex items-center justify-center gap-2 group"
+							>
+								SOLICITAR COTIZACIÓN FBM
+								<ArrowRight size={20} class="group-hover:translate-x-1 transition-transform" />
+							</button>
+
+							<p class="text-[10px] uppercase tracking-widest opacity-60">
+								Respuesta inmediata por nuestro equipo comercial
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             <div class="service-card border-primary/20">
                 <div class="flex items-center gap-3 mb-6">
                     <Box class="text-primary" size={24} />
@@ -162,13 +163,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="mt-16 text-center">
-            <p class="text-gray-500 mb-6">¿Necesitas un presupuesto personalizado para grandes volúmenes?</p>
-            <button on:click={handleQuoteClick} class="btn-primary">
-                Solicitar Cotización Especial
-            </button>
-        </div>
-    </div>
+        </div> -->
+	</div>
 </section>

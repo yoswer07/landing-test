@@ -31,20 +31,20 @@
     }
 </script>
 
-<header class="sticky top-0 z-50 bg-secondary shadow-md">
+<header class="sticky top-0 z-50 bg-white shadow-lg">
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="flex items-center justify-between h-20">
             
             <div class="shrink-0">
                 <a href="/" class="flex items-center">
-                    <img src="/images/logo3px.jpg" alt="Logo" class="h-20 w-auto mr-2" />
+                    <img src="/images/logo3plxllg.png" alt="Logo" class="h-30 sm:h-35 w-auto mr-2" />
                 </a>
             </div>
 
             <div class="hidden md:flex items-center space-x-8">
                 <nav class="flex space-x-8">
                     {#each navLinks as link}
-                        <a href={link.href} use:smoothScroll class="text-gray-200 hover:text-blue-500 font-medium transition duration-150">
+                        <a href={link.href} use:smoothScroll class="text-gray-800 hover:text-blue-500 font-medium transition duration-150">
                             {link.label}
                         </a>
                     {/each}
@@ -64,7 +64,7 @@
             </div>
 
             <div class="md:hidden flex items-center">
-                <button on:click={toggleMenu} class="text-gray-200 hover:text-blue-600 focus:outline-none">
+                <button on:click={toggleMenu} class="text-gray-800 hover:text-blue-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         {#if isMenuOpen}
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -78,10 +78,10 @@
     </div>
     
     {#if isMenuOpen}
-        <div id="mobile-menu" class="md:hidden bg-secondary" transition:slide="{{ duration: 200, easing: quintOut }}">
-            <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-700">
+        <div id="mobile-menu" class="md:hidden bg-gray-100" transition:slide="{{ duration: 200, easing: quintOut }}">
+            <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200">
                 {#each navLinks as link}
-                    <a href={link.href} on:click={toggleMenu} use:smoothScroll class="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-700">
+                    <a href={link.href} on:click={toggleMenu} use:smoothScroll class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-300">
                         {link.label}
                     </a>
                 {/each}
