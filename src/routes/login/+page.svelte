@@ -108,7 +108,7 @@
 				{isRegistering ? 'Crea tu cuenta' : 'Accede a tu cuenta'}
 			</h2>
 			<p class="mt-2 text-sm text-gray-600">
-				{isRegistering ? 'Únete a 3PX Logistics' : 'Ingresa a tu panel de control'}
+				{isRegistering ? 'Únete a 3PL Xpress' : 'Ingresa a tu panel de control'}
 			</p>
 		</div>
 

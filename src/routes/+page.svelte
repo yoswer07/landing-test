@@ -3,8 +3,11 @@
 </script>
 
 <svelte:head>
-    <title>Tu Empresa de Envíos | Logística Global Rápida y Segura</title>
-    <meta name="description" content="Entregas rápidas y seguras a nivel global con precios transparentes. ¡Cotiza tu envío hoy mismo!">
+    <link rel="alternate" hreflang="es" href="https://3pxlogistics.com" />
+    <link rel="alternate" hreflang="en" href="https://3pxlogistics.com" />
+    <link rel="alternate" hreflang="x-default" href="https://3pxlogistics.com" />
+    <title>3PX Logistics | Soluciones FBA y FBM en USA</title>
+    <meta name="description" content="Servicios logísticos profesionales para vendedores de Amazon, TikTok Shop, Walmart y e-commerce">
 </svelte:head>
 
 <main>

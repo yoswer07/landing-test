@@ -30,7 +30,7 @@
 			a: 'Aceptamos Zelle, PayPal, tarjeta de débito o crédito, y transferencias bancarias (EE. UU.). También ofrecemos facturación mensual para clientes recurrentes.'
 		},
 		{
-			q: '¿Cómo es la comunicación con el equipo de 3PX Logistics?',
+			q: '¿Cómo es la comunicación con el equipo de 3PL Xpress?',
 			a: 'Ofrecemos Comunicación Directa. No trabajamos con bots ni correos sin responder. Tendrás un canal directo 1:1 con nuestro equipo para soporte en tiempo real.'
 		}
 	];

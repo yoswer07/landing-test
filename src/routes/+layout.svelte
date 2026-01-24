@@ -8,9 +8,9 @@
 </script>
 
 <div class="min-h-screen flex flex-col">
-    
+
     <Header />
-    
+        
     <main class="grow">
         {@render children()} 
     </main>

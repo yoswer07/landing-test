@@ -16,7 +16,7 @@
             
             <div class="text-center sm:text-left">
                 Copyright © {currentYear} por 
-                <span class="font-semibold text-white">3PX Logistics</span>
+                <span class="font-semibold text-white">3PL Xpress</span>
                 - Diseñado por 
                 <a href="https://ejemplo.com/yoswer-a" target="_blank" class="font-semibold text-gray-300 hover:text-primary transition duration-200">
                     Yoswer A

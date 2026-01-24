@@ -7,7 +7,7 @@
 	<div class="container mx-auto px-6 max-w-7xl pt-16">
 		<div class="text-center mb-16 max-w-3xl mx-auto">
 			<h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mt-2">
-				Logística 3PX: Tu Inventario Optimizado, de USA al Mundo.
+				3PL Xpress: Tu Inventario Optimizado, de USA al Mundo.
 			</h2>
 		</div>
 

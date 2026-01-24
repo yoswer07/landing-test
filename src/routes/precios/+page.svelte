@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { auth } from '../../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
+	import { t } from '$lib/langStore';
 
 	let user: any = null;
 
@@ -49,10 +50,10 @@
 	<div class="max-w-6xl mx-auto">
 		<div class="text-center mb-16">
 			<h1 class="text-4xl md:text-5xl font-extrabold text-secondary mb-4">
-				Tarifas <span class="text-primary">Transparentes</span>
+				{@html $t.pricing_title}
 			</h1>
 			<p class="text-gray-600 max-w-2xl mx-auto">
-				Soluciones logísticas adaptadas al volumen de tu negocio. Sin letras chiquitas.
+				{$t.pricing_sub}
 			</p>
 		</div>
 
@@ -109,7 +110,7 @@
 								on:click={handleQuoteClick}
 								class="btn-primary w-full flex items-center justify-center gap-2 group"
 							>
-								SOLICITAR COTIZACIÓN FBM
+								{$t.btn_quote}
 								<ArrowRight size={20} class="group-hover:translate-x-1 transition-transform" />
 							</button>
 

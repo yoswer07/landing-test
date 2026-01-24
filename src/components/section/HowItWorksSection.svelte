@@ -36,7 +36,7 @@
         
         <div class="text-center mb-16 max-w-3xl mx-auto">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mt-2">
-                Obtén tu Cotización y Activa tu Operación 3PX
+                Obtén tu Cotización y Activa tu Operación 3PL Xpress
             </h2>
             <p class="mt-4 text-gray-600 text-lg">
                 Cotizar tus servicios es el primer paso para delegar la logística y centrarte únicamente en las ventas. Sigue estos pasos:
