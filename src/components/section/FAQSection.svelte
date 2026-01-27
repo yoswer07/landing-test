@@ -1,37 +1,35 @@
 <script lang="ts">
-	// Necesitas una forma de manejar el estado abierto/cerrado del acordeón
+	import { t } from '$lib/langStore';
 	let activeIndex: number | null = null;
 
-	// Función para alternar el acordeón
 	function toggleAccordion(index: number) {
 		activeIndex = activeIndex === index ? null : index;
 	}
 
-	// Datos de las FAQs basadas en el copy
-	const faqs = [
+	$: faqs = [
 		{
-			q: '¿Qué tan rápidos son sus procesos de preparación (prep) y envío?',
-			a: 'Trabajamos con tiempos de procesamiento muy rápidos, generalmente entre 24 y 48 horas después de la recepción, ideales para vendedores que necesitan flujo constante de inventario.'
+			q:  $t.q1_faq,
+			a: 	$t.r1_faq
 		},
 		{
-			q: '¿Qué marketplaces cubren sus servicios de logística?',
-			a: 'Nos especializamos en vendedores de Amazon FBA, TikTok Shop y Walmart, además de brindar logística fulfillment (FBM) para cualquier plataforma de e-commerce.'
+			q:  $t.q2_faq,
+			a: 	$t.r2_faq
 		},
 		{
-			q: '¿Sus precios incluyen tarifas ocultas?',
-			a: 'No, nuestros precios son claros y transparentes. Siempre sabrás cuánto cuesta cada unidad o servicio adicional antes de empezar la operación, sin sorpresas.'
+			q:  $t.q3_faq,
+			a: 	$t.r3_faq
 		},
 		{
-			q: '¿Cómo puedo solicitar una cotización exacta?',
-			a: 'Solo necesitamos información clave como el tipo y volumen mensual de tu producto, los servicios requeridos, el tamaño/peso promedio y la prioridad de envío (same-day o estándar). Te enviaremos una propuesta clara con el precio por unidad.'
+			q:  $t.q4_faq,
+			a: 	$t.r4_faq
 		},
 		{
-			q: '¿Qué métodos de pago aceptan?',
-			a: 'Aceptamos Zelle, PayPal, tarjeta de débito o crédito, y transferencias bancarias (EE. UU.). También ofrecemos facturación mensual para clientes recurrentes.'
+			q:  $t.q5_faq,
+			a: 	$t.r5_faq
 		},
 		{
-			q: '¿Cómo es la comunicación con el equipo de 3PL Xpress?',
-			a: 'Ofrecemos Comunicación Directa. No trabajamos con bots ni correos sin responder. Tendrás un canal directo 1:1 con nuestro equipo para soporte en tiempo real.'
+			q:  $t.q6_faq,
+			a: 	$t.r6_faq
 		}
 	];
 </script>
@@ -39,7 +37,7 @@
 <section id="faq" class="scroll-mt-68 md:-scroll-mt-4 py-18 md:pt-28 bg-linear-to-b from-white to-gray-50">
 	<div class="container mx-auto px-6 max-w-4xl">
 		<div class="text-center mb-12">
-			<h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mt-2">Preguntas Frecuentes</h2>
+			<h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mt-2">{$t.title_faq}</h2>
 		</div>
 
 		<div class="space-y-4">

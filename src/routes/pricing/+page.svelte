@@ -8,40 +8,37 @@
 	let user: any = null;
 
 	onMount(() => {
-		// Escuchar el estado del usuario para saber si está logueado
 		const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
 			user = firebaseUser;
 		});
 
-		return () => unsubscribe(); // Limpiar el listener al destruir el componente
+		return () => unsubscribe();
 	});
 
 	function handleQuoteClick(e: Event) {
 		if (!user) {
-			// Si no hay usuario, redirigir al login
 			window.location.href = '/login';
 		} else {
-			// Si hay usuario, ir al dashboard
 			window.location.href = '/dashboard';
 		}
 	}
 
-	const fbaServices = [
+	$: fbaServices = [
 		{
-			name: 'Labeling (Etiquetado)',
-			prices: ['0 a 1,000 und: $0.75', '1,001 a 3,000 und: $0.65']
+			name: $t.label_quote,
+			prices: ['0 - 1,000 und: $0.75', '1,001 - 3,000 und: $0.65']
 		},
 		{
-			name: 'Labeling + Polybag',
-			prices: ['0 a 1,000 und: $1.00', '1,001 a 3,000 und: $0.90', '3,000+ und: $0.85']
+			name: `${$t.label_quote} + Polybag`,
+			prices: ['0 - 1,000 und: $1.00', '1,001 - 3,000 und: $0.90', '3,000+ und: $0.85']
 		},
 		{
-			name: 'Labeling + Polybag (2-3 und)',
-			prices: ['0 a 1,000 und: $1.25', '1,001 a 3,000 und: $1.20', '3,000+ und: $1.10']
+			name: `${$t.label_quote} + Polybag (2-3 und)`,
+			prices: ['0 - 1,000 und: $1.25', '1,001 - 3,000 und: $1.20', '3,000+ und: $1.10']
 		},
 		{
 			name: 'Glass Wrapping',
-			prices: ['Sobre: $1.00', '1 und: $1.30', 'Bundle 2-3 und: $1.80', 'Bundle 4-6 und: $2.30', 'Bundle 12 und: $2.80']
+			prices: [`${$t.env_price}: $1.00`, '1 und: $1.30', 'Bundle 2-3 und: $1.80', 'Bundle 4-6 und: $2.30', 'Bundle 12 und: $2.80']
 		}
 	];
 </script>
@@ -98,11 +95,10 @@
 					</div>
 
 					<div class="relative z-10 text-center flex flex-col items-center">
-						<h3 class="text-2xl font-bold mb-4">Tarifas Personalizadas</h3>
+						<h3 class="text-2xl font-bold mb-4">{$t.tarif_price}</h3>
 
 						<p class="mb-8 max-w-md mx-auto">
-							Ofrecemos soluciones de despacho multicanal adaptadas al volumen real y necesidades
-							específicas de tu operación.
+							{$t.text_price}
 						</p>
 
 						<div class="space-y-4 w-full max-w-sm">
@@ -115,7 +111,7 @@
 							</button>
 
 							<p class="text-[10px] uppercase tracking-widest opacity-60">
-								Respuesta inmediata por nuestro equipo comercial
+								{$t.text2_price}
 							</p>
 						</div>
 					</div>

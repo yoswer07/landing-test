@@ -3,6 +3,7 @@
 	export let email: string;
 	import { CalendarDays, ArrowRight } from '@lucide/svelte';
 	const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER;
+	import { t } from '$lib/langStore';
 </script>
 
 <div class="bg-white rounded-xl shadow-md p-8 text-center">
@@ -15,10 +16,10 @@
 	</div>
 	<h1 class="text-2xl font-bold text-secondary">
 		{userData.firstName || ''}
-		{userData.lastName || 'Usuario'}
+		{userData.lastName || $t.user_name}
 	</h1>
 	<p class="text-gray-500">{email}</p>
-	<div class="mt-4 text-sm text-gray-400">Tel: {userData.phone || 'No registrado'}</div>
+	<div class="mt-4 text-sm text-gray-400">Tel: {userData.phone || $t.profile_tel}</div>
 </div>
 <div
 	class="mt-12 p-6 bg-linear-to-r from-gray-50 to-white border border-gray-200 rounded-2xl shadow-sm"
@@ -32,8 +33,8 @@
 			</div>
 
 			<div>
-				<h4 class="text-lg font-bold text-secondary">¿Quieres agendar tu cita?</h4>
-				<p class="text-gray-500 text-sm">Contáctanos para coordinar la recepción de tu carga.</p>
+				<h4 class="text-lg font-bold text-secondary">{$t.text_date}</h4>
+				<p class="text-gray-500 text-sm">{$t.text_date2}</p>
 			</div>
 		</div>
 
@@ -42,7 +43,7 @@
 			target="_blank"
 			class="btn-secondary flex items-center justify-center gap-2 group"
 		>
-			CONTACTANOS
+			{$t.contact_us}
 			<ArrowRight size={18} class="group-hover:translate-x-1 transition-transform" />
 		</a>
 	</div>

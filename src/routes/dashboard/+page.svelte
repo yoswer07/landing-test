@@ -5,8 +5,8 @@
 	import { onAuthStateChanged, signOut } from 'firebase/auth';
 	import { updatePassword } from 'firebase/auth';
 	import { showNotify } from '$lib/toastStore';
+	import { t } from '$lib/langStore';
 
-	// Importación centralizada desde $lib
 	import { Profile, Settings, QuoteForm } from '$lib';
 
 	let user: any = null;
@@ -67,27 +67,26 @@
 					formInfo.newPassword = '';
 					formInfo.confirmPassword = '';
 				} else {
-					showNotify('Las contraseñas no coinciden', 'error');
+					showNotify($t.pass_toast, 'error');
 					return;
 				}
 			}
 
 			userData = { ...formInfo };
 			activeTab = 'perfil';
-			showNotify('Información actualizada correctamente', 'success');
+			showNotify($t.info_toast, 'success');
 		} catch (e: any) {
 			console.error(e);
 			if (e.code === 'auth/requires-recent-login') {
-				showNotify('Debe haber iniciado sesión recientemente para cambiar la contraseña.', 'error');
+				showNotify($t.session_toast, 'error');
 			} else {
-				showNotify('Error al actualizar los datos.', 'error');
+				showNotify($t.error_toast, 'error');
 			}
 		}
 	}
 
 	async function submitQuote() {
-		const GOOGLE_SCRIPT_URL =
-			import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+		const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
 		try {
 			await addDoc(collection(db, 'quotes'), { ...formInfo, createdAt: new Date() });
@@ -103,10 +102,10 @@
 
 			activeTab = 'perfil';
 
-			showNotify('Cotización enviada', 'success');
+			showNotify($t.quote_toast, 'success');
 		} catch (e) {
 			console.error(e);
-			showNotify('Error al conectar', 'error');
+			showNotify($t.con_toast, 'error');
 		}
 	}
 
@@ -117,21 +116,21 @@
 
 	function formatQuoteMessage() {
 		return `
-        *Nueva Cotización de Envío* 
-        --------------------------------
-        *Cliente:* ${formInfo.firstName} ${formInfo.lastName}
-        *Correo:* ${formInfo.email}
-        *Teléfono:* ${formInfo.phone}
+			*${$t.msg_header}* 
+			--------------------------------
+			*${$t.msg_client}:* ${formInfo.firstName} ${formInfo.lastName}
+			*${$t.email_quote}:* ${formInfo.email}
+			*${$t.phone_quote}:* ${formInfo.phone}
 
-        *Detalles del Producto:*
-        - Tipo: ${formInfo.productType}
-        - Cantidad mensual: ${formInfo.monthlyQuantity}
-        - Peso prom: ${formInfo.avgWeight} lb
-        - Tamaño prom: ${formInfo.avgSize} in
+			*${$t.msg_details}:*
+			- ${$t.msg_type}: ${formInfo.productType}
+			- ${$t.msg_qty}: ${formInfo.monthlyQuantity}
+			- ${$t.msg_weight}: ${formInfo.avgWeight} lb
+			- ${$t.msg_size}: ${formInfo.avgSize} in
 
-        *Servicios:* ${formInfo.services.join(', ')}
-        *Tipo de Envío:* ${formInfo.shippingType}
-            `.trim();
+			*${$t.nav_services}:* ${formInfo.services.join(', ')}
+			*${$t.msg_shipping_type}:* ${formInfo.shippingType}
+    			`.trim();
 	}
 
 	function sendWhatsApp(message: string) {
@@ -145,14 +144,16 @@
 
 <div class="min-h-screen bg-gray-100 flex flex-col md:flex-row">
 	<aside class="w-full md:w-58 bg-secondary/98 text-white shrink-0 shadow-xl">
-		<div class="p-6 text-xl font-bold border-b border-gray-700 hidden md:block">Mi Panel</div>
+		<div class="p-6 text-xl font-bold border-b border-gray-700 hidden md:block">
+			{$t.panel_dash}
+		</div>
 
 		<nav class="flex md:flex-col p-2 md:p-0 overflow-x-auto md:overflow-x-visible">
 			<button
 				on:click={() => (activeTab = 'perfil')}
 				class="aside-button {activeTab === 'perfil'
 					? 'bg-primary text-white font-bold'
-					: 'hover:bg-white/10'}">Mi Perfil</button
+					: 'hover:bg-white/10'}">{$t.profile_dash}</button
 			>
 			<button
 				on:click={() => (activeTab = 'formulario')}
@@ -160,7 +161,7 @@
 					? 'bg-primary text-white font-bold'
 					: 'hover:bg-white/10'}"
 			>
-				Registrar Cotización
+				{$t.regis_dash}
 			</button>
 			<button
 				on:click={() => (activeTab = 'editar')}
@@ -168,14 +169,14 @@
 					? 'bg-primary text-white font-bold'
 					: 'hover:bg-white/10'}"
 			>
-				Ajustes
+				{$t.setting_dash}
 			</button>
 
 			<button
 				on:click={handleLogout}
 				class="cursor-pointer hidden md:block w-full text-left px-6 py-3 mt-auto text-red-400 hover:bg-red-500/10 border-t border-gray-700"
 			>
-				Cerrar Sesión
+				{$t.close_dash}
 			</button>
 		</nav>
 	</aside>
@@ -184,7 +185,7 @@
 		{#if loading}
 			<div class="flex flex-col items-center justify-center h-full">
 				<div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-				<p class="mt-4 text-gray-600 font-medium">Cargando tu panel...</p>
+				<p class="mt-4 text-gray-600 font-medium">{$t.charge_dash}</p>
 			</div>
 		{:else}
 			<div class="max-w-4xl mx-auto pb-20">
@@ -200,6 +201,6 @@
 	</main>
 
 	<button on:click={handleLogout} class="md:hidden bg-red-600 text-white py-3 font-bold">
-		Cerrar Sesión
+		{$t.close_dash}
 	</button>
 </div>

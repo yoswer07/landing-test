@@ -2,7 +2,6 @@
     import { toast } from '$lib/toastStore';
 	import { CircleCheck, CircleX } from '@lucide/svelte';
     import { fly } from 'svelte/transition';
-    
 </script>
 
 {#if $toast.show}

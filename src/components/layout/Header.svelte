@@ -7,6 +7,8 @@
 	import { locale } from '$lib/langStore';
 	import { Languages } from '@lucide/svelte';
 
+	import { t } from '$lib/langStore';
+
 	function toggleLang() {
 		locale.update((l) => (l === 'es' ? 'en' : 'es'));
 	}
@@ -16,12 +18,12 @@
 	let user: any = null;
 	let auth: any;
 
-	const navLinks = [
-		{ label: 'Servicios', href: '/#servicios' },
-		{ label: 'Cómo Funcionamos', href: '/#como-funciona' },
-		{ label: 'Precios', href: '/precios' },
-		{ label: 'Preguntas Frecuentes', href: '/#faq' }
-	];
+	$: navLinks = [
+        { label: $t.nav_services, href: '/#services' },
+        { label: $t.nav_how_it_works, href: '/#how-it-works' },
+        { label: $t.nav_pricing, href: '/pricing' },
+        { label: $t.nav_faq, href: '/#faq' }
+    ];
 
 	onMount(async () => {
 		const firebaseModule = await import('../../lib/firebase');
@@ -82,11 +84,11 @@
 				<div class="hidden md:block shrink-0">
 					{#if user}
 						<a href="/dashboard" class="btn-primary py-2 px-4">
-							<span class="md:max-[1024px]:hidden">Mi</span> Cuenta
+							<span class="md:max-[1024px]:hidden">{$t.btn_account_slice}</span> {$t.btn_account_slice2}
 						</a>
 					{:else}
 						<a href="/login" class="btn-primary py-2 px-4">
-							Iniciar <span class="md:max-[1024px]:hidden">Sesión</span>
+							{$t.btn_session_slice}
 						</a>
 					{/if}
 				</div>
@@ -164,7 +166,7 @@
 							on:click={toggleMenu}
 							class="btn-primary px-4 block w-full text-center py-2"
 						>
-							Mi Cuenta
+							{$t.btn_account}
 						</a>
 					{:else}
 						<a
@@ -172,7 +174,7 @@
 							on:click={toggleMenu}
 							class="btn-primary px-4 block w-full text-center py-2"
 						>
-							Iniciar Sesión
+							{$t.btn_session}
 						</a>
 					{/if}
 				</div>

@@ -2,24 +2,22 @@
 	import { onMount } from 'svelte';
 	import { auth } from '../../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
+	import { t } from '$lib/langStore';
 
 	let user: any = null;
 
 	onMount(() => {
-		// Escuchar el estado del usuario para saber si está logueado
 		const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
 			user = firebaseUser;
 		});
 
-		return () => unsubscribe(); // Limpiar el listener al destruir el componente
+		return () => unsubscribe();
 	});
 
 	function handleQuoteClick(e: Event) {
 		if (!user) {
-			// Si no hay usuario, redirigir al login
 			window.location.href = '/login';
 		} else {
-			// Si hay usuario, ir al dashboard
 			window.location.href = '/dashboard';
 		}
 	}
@@ -32,16 +30,16 @@
 		<div class="flex flex-col lg:flex-row items-center justify-between gap-12">
 			<div class="lg:w-1/2 text-center lg:text-left space-y-6">
 				<h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
-					<span class="text-white">Escala tu <br />E-commerce </span>
-					<br /><span class="text-primary">sin estrés.</span>
+					<span class="text-white">{$t.scale_hero} <br />E-commerce </span>
+					<br /><span class="text-primary">{$t.stress_hero}</span>
 				</h1>
 
 				<p class="text-xl sm:text-2xl opacity-90 max-w-lg mx-auto lg:mx-0">
-					Tu Prep Center de Confianza en USA para Amazon, TikTok Shop y Walmart.
+					{$t.text_hero}
 				</p>
 
 				<button on:click={handleQuoteClick} class="btn-primary inline-block text-lg">
-					¡COTIZA AHORA!
+					{$t.btn_hero}
 				</button>
 			</div>
 
@@ -52,7 +50,7 @@
 					<span class="md:flex">
 						<img
 							src="/images/hero-img.png"
-							alt="Ilustración de logística moderna"
+							alt="Source"
 							class="max-w-full h-auto rounded-lg opacity-90"
 						/>
 					</span>
@@ -68,17 +66,14 @@
 
 		background-image: linear-gradient(to bottom, #25657e, #3497bf);
 
-		/*CREACIÓN DE LA CURVA INFERIOR CON CLIP-PATH */
 		clip-path: polygon(
 			0% 0%,
-			/* Esquina superior izquierda */ 100% 0%,
-			/* Esquina superior derecha */ 100% 90%,
-			/* Extremo derecho de la curva (altura 90%) */ 50% 100%,
-			/* Punto más bajo y central de la curva (valle) */ 0% 90%
-				/* Extremo izquierdo de la curva (altura 90%) */
+			100% 0%,
+			100% 90%,
+			50% 100%,
+			0% 90%
 		);
 
-		/* Ajuste de diseño */
 		min-height: 400px;
 		width: 100%;
 		position: relative;

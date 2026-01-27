@@ -1,9 +1,10 @@
 <script lang="ts">
-    import { Instagram, Twitter, Facebook, Rss } from '@lucide/svelte';
+    import { Instagram, Music2, Facebook } from '@lucide/svelte';
+    import { t } from '$lib/langStore';
 
     const socialLinks = [
         { name: 'Instagram', href: '#instagram', icon: Instagram, color: 'text-pink-600' },
-        { name: 'X', href: '#twitter', icon: Twitter, color: 'text-gray-900' },
+        { name: 'Tiktok', href: 'https://www.tiktok.com/@3plxpress1', icon: Music2, color: 'text-gray-900' },
         { name: 'Facebook', href: '#facebook', icon: Facebook, color: 'text-blue-600' },
     ];
 
@@ -15,9 +16,9 @@
         <div class="flex flex-col sm:flex-row items-center justify-between text-sm text-white space-y-3 sm:space-y-0">
             
             <div class="text-center sm:text-left">
-                Copyright © {currentYear} por 
+                Copyright © {currentYear} {$t.by_footer} 
                 <span class="font-semibold text-white">3PL Xpress</span>
-                - Diseñado por 
+                - {$t.design_footer} 
                 <a href="https://ejemplo.com/yoswer-a" target="_blank" class="font-semibold text-gray-300 hover:text-primary transition duration-200">
                     Yoswer A
                 </a>

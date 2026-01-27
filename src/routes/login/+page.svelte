@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { showNotify } from '$lib/toastStore';
 	import { onMount } from 'svelte';
+	import { t } from '$lib/langStore';
 
 	let auth: any;
 	let db: any;
@@ -50,9 +51,9 @@
 			await setDoc(userRef, {
 				email: user.email,
 				uid: user.uid,
-				firstName: '', // Campo vacío inicial
-				lastName: '', // Campo vacío inicial
-				phone: '', // Campo vacío inicial
+				firstName: '',
+				lastName: '',
+				phone: '',
 				createdAt: new Date(),
 				role: 'client'
 			});
@@ -68,10 +69,10 @@
 			if (isRegistering) {
 				const res = await createUserWithEmailAndPassword(auth, email, password);
 				await saveUserToFirestore(res.user);
-				showNotify('¡Cuenta creada con éxito!', 'success');
+				showNotify($t.suss_toast, 'success');
 			} else {
 				await signInWithEmailAndPassword(auth, email, password);
-				showNotify('¡Bienvenido de nuevo!', 'success');
+				showNotify($t.welcome_toast, 'success');
 			}
 			setTimeout(() => {
 				window.location.href = '/dashboard';
@@ -79,19 +80,19 @@
 		} catch (e: any) {
 			console.error(e);
 			if (e.code === 'auth/email-already-in-use') {
-				errorMessage = 'Este correo ya está registrado.';
+				errorMessage = $t.reg_toast;
 			} else if (
 				e.code === 'auth/invalid-credential' ||
 				e.code === 'auth/wrong-password' ||
 				e.code === 'auth/user-not-found'
 			) {
-				errorMessage = 'Correo o contraseña incorrectos.';
+				errorMessage = $t.erroracc_toast;
 			} else if (e.code === 'auth/invalid-email') {
-				errorMessage = 'El formato del correo no es válido.';
+				errorMessage = $t.formar_toast;
 			} else if (e.code === 'auth/weak-password') {
-				errorMessage = 'La contraseña debe tener al menos 6 caracteres.';
+				errorMessage = $t.low_toast;
 			} else {
-				errorMessage = 'Ocurrió un error inesperado.';
+				errorMessage = $t.error2_toast;
 			}
 			showNotify(errorMessage, 'error');
 			isLoading = false;
@@ -105,10 +106,10 @@
 	>
 		<div class="text-center">
 			<h2 class="text-3xl font-extrabold text-secondary">
-				{isRegistering ? 'Crea tu cuenta' : 'Accede a tu cuenta'}
+				{isRegistering ? $t.acc_login : $t.acces_login}
 			</h2>
 			<p class="mt-2 text-sm text-gray-600">
-				{isRegistering ? 'Únete a 3PL Xpress' : 'Ingresa a tu panel de control'}
+				{isRegistering ? $t.join_login : $t.in_login}
 			</p>
 		</div>
 
@@ -119,7 +120,7 @@
 					bind:value={email}
 					disabled={isLoading}
 					required
-					placeholder="Correo electrónico"
+					placeholder={$t.email_quote}
 					class="login-field"
 				/>
 
@@ -128,7 +129,7 @@
 					bind:value={password}
 					disabled={isLoading}
 					required
-					placeholder="Contraseña"
+					placeholder={$t.pass_login}
 					class="login-field"
 				/>
 			</div>
@@ -138,9 +139,9 @@
 				class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-lg text-white bg-secondary hover:bg-[#1a1c2e] focus:outline-none transition duration-200"
 			>
 				{#if isLoading}
-					PROCESANDO...
+					{$t.process_login}
 				{:else}
-					{isRegistering ? 'REGISTRARSE' : 'INICIAR SESIÓN'}
+					{isRegistering ? $t.regis_login : $t.login_login}
 				{/if}
 			</button>
 		</form>
@@ -152,8 +153,8 @@
 				class="text-sm font-medium text-primary hover:underline transition duration-150"
 			>
 				{isRegistering
-					? '¿Ya tienes cuenta? Inicia sesión'
-					: '¿No tienes cuenta? Regístrate gratis'}
+					? $t.msg_login
+					: $t.msg2_login}
 			</button>
 		</div>
 	</div>
