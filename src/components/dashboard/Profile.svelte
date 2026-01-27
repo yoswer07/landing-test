@@ -39,7 +39,7 @@
 		</div>
 
 		<a
-			href="mailto:contactEmail"
+			href="mailto:{contactEmail}"
 			target="_blank"
 			class="btn-secondary flex items-center justify-center gap-2 group"
 		>
