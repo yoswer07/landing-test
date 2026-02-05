@@ -1,4 +1,5 @@
 <script lang="ts">
+	import hero from '$lib/assets/hero-img.webp';
 	import { onMount } from 'svelte';
 	import { auth } from '../../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
@@ -48,8 +49,8 @@
 					class="rounded-xl overflow-hidden h-72 md:h-96 flex items-center justify-center"
 				>
 					<span class="md:flex">
-						<img
-							src="/images/hero-img.png"
+						<enhanced:img
+							src={hero}
 							alt="Source"
 							class="max-w-full h-auto rounded-lg opacity-90"
 						/>

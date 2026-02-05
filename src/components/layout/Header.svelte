@@ -1,4 +1,5 @@
 <script lang="ts">
+	import logo from '$lib/assets/logo2.webp';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
@@ -44,8 +45,8 @@
 	<div class="container mx-auto px-6 max-w-7xl">
 		<div class="flex items-center justify-between h-20">
 			<div class="shrink-0">
-				<a href="/" class="flex items-center">
-					<img src="/images/logo2.png" alt="Logo" class="h-24 xl:h-32 w-auto mr-2 transition-all" />
+				<a href="/" class="flex items-center" title="Logo">
+					<enhanced:img src={logo} alt="Logo" class="h-24 xl:h-32 w-auto mr-2 transition-all" />
 				</a>
 			</div>
 
