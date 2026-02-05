@@ -7,6 +7,7 @@
 	let db: any;
 	let signInWithEmailAndPassword: any;
 	let createUserWithEmailAndPassword: any;
+	let sendPasswordResetEmail: any;
 	let doc: any;
 	let setDoc: any;
 	let getDoc: any;
@@ -28,11 +29,30 @@
 
 		signInWithEmailAndPassword = authModule.signInWithEmailAndPassword;
 		createUserWithEmailAndPassword = authModule.createUserWithEmailAndPassword;
+		sendPasswordResetEmail = authModule.sendPasswordResetEmail;
 
 		doc = firestoreModule.doc;
 		setDoc = firestoreModule.setDoc;
 		getDoc = firestoreModule.getDoc;
 	});
+
+    function isPasswordValid(pass: string) {
+        const regex = /^(?=.*[0-9]).{8,}$/;
+        return regex.test(pass);
+    }
+
+    async function handleForgotPassword() {
+        if (!email) {
+            showNotify($t.enter_email_error, 'error');
+            return;
+        }
+        try {
+            await sendPasswordResetEmail(auth, email);
+            showNotify($t.recovery_sent_ok, 'success');
+        } catch (e: any) {
+            showNotify($t.error2_toast, 'error');
+        }
+    }
 
 	function toggleAuthMode() {
 		isRegistering = !isRegistering;
@@ -62,6 +82,12 @@
 
 	const handleEmailAuth = async () => {
 		if (!auth || isLoading) return;
+
+		if (isRegistering && !isPasswordValid(password)) {
+            showNotify($t.pass_requirements, 'error');
+            return;
+        }
+
 		isLoading = true;
 		errorMessage = '';
 
@@ -133,6 +159,18 @@
 					class="login-field"
 				/>
 			</div>
+
+			{#if !isRegistering}
+                <div class="flex justify-end">
+                    <button 
+                        type="button" 
+                        on:click={handleForgotPassword}
+                        class="text-xs text-primary hover:underline cursor-pointer"
+                    >
+                        {$t.forgot_pass}
+                    </button>
+                </div>
+            {/if}
 
 			<button
 				type="submit"

@@ -6,14 +6,24 @@
 	import { t } from '$lib/langStore';
 
 	let user: any = null;
+	let isDesktop = false;
 
 	onMount(() => {
+		checkScreenSize();
+		window.addEventListener('resize', checkScreenSize);
 		const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
 			user = firebaseUser;
 		});
 
-		return () => unsubscribe();
+		return () => {
+			unsubscribe();
+			window.removeEventListener('resize', checkScreenSize);
+		}
 	});
+
+	function checkScreenSize() {
+        isDesktop = window.innerWidth >= 768;
+    }
 
 	function handleQuoteClick(e: Event) {
 		if (!user) {
@@ -44,19 +54,21 @@
 				</button>
 			</div>
 
-			<div class="lg:w-1/2 hidden md:flex md:w-[80%] mt-10 lg:mt-0 justify-center items-center">
-				<div
-					class="rounded-xl overflow-hidden h-72 md:h-96 flex items-center justify-center"
-				>
-					<span class="md:flex">
-						<enhanced:img
-							src={hero}
-							alt="Source"
-							class="max-w-full h-auto rounded-lg opacity-90"
-						/>
-					</span>
+			{#if isDesktop}
+				<div class="lg:w-1/2 hidden md:flex md:w-[80%] mt-10 lg:mt-0 justify-center items-center">
+					<div
+						class="rounded-xl overflow-hidden h-72 md:h-96 flex items-center justify-center"
+					>
+						<span class="md:flex">
+							<enhanced:img
+								src={hero}
+								alt="Source"
+								class="max-w-full h-auto rounded-lg opacity-90"
+							/>
+						</span>
+					</div>
 				</div>
-			</div>
+			{/if}
 		</div>
 	</div>
 </section>

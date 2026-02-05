@@ -148,6 +148,11 @@ export const translations = {
 
         home_title: "3PL Xpress | FBA and FBM Solutions in USA",
         home_description: "Professional logistics services for Amazon, TikTok Shop, Walmart, and e-commerce sellers",
+
+        enter_email_error: "Please enter your email",
+        recovery_sent_ok: "Recovery email sent",
+        pass_requirements: "The password must be 8+ characters and include a number",
+        forgot_pass: "Forgot your password?",
     },
     es: {
         pricing_title: "Tarifas <span class='text-primary'>Transparentes</span>",
@@ -299,5 +304,10 @@ export const translations = {
 
         home_title: "3PL Xpress | Soluciones FBA y FBM en USA",
         home_description: "Servicios logísticos profesionales para vendedores de Amazon, TikTok Shop, Walmart y e-commerce",
+
+        enter_email_error: "Por favor, ingresa tu correo primero",
+        recovery_sent_ok: "Correo de recuperación enviado",
+        pass_requirements: "La contraseña debe tener 8+ caracteres y un número",
+        forgot_pass: "¿Olvidaste tu contraseña?",
     }
 };

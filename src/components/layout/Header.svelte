@@ -96,7 +96,7 @@
 			</div>
 
 			<div class="md:hidden flex items-center">
-				<button on:click={toggleMenu} class="text-gray-200 hover:text-blue-600 focus:outline-none">
+				<button aria-label="Menu-Path" on:click={toggleMenu} class="text-gray-200 hover:text-blue-600 focus:outline-none">
 					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						{#if isMenuOpen}
 							<path
