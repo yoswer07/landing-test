@@ -101,7 +101,7 @@
 			sendWhatsApp(formatQuoteMessage());
 
 			activeTab = 'perfil';
-
+ 
 			showNotify($t.quote_toast, 'success');
 		} catch (e) {
 			console.error(e);
