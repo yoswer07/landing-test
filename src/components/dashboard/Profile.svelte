@@ -2,7 +2,7 @@
 	export let userData: any;
 	export let email: string;
 	import { CalendarDays, ArrowRight } from '@lucide/svelte';
-	const contactEmail = import.meta.env.VITE_SUPPORT_EMAIL;
+	import { PUBLIC_SUPPORT_EMAIL} from '$env/static/public';
 	import { t } from '$lib/langStore';
 </script>
 
@@ -39,7 +39,7 @@
 		</div>
 
 		<a
-			href="mailto:{contactEmail}"
+			href="mailto:{PUBLIC_SUPPORT_EMAIL}"
 			target="_blank"
 			class="btn-secondary flex items-center justify-center gap-2 group"
 		>

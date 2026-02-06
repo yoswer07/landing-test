@@ -6,6 +6,10 @@
 	import { updatePassword } from 'firebase/auth';
 	import { showNotify } from '$lib/toastStore';
 	import { t } from '$lib/langStore';
+	import { 
+    PUBLIC_WHATSAPP_NUMBER,
+	PUBLIC_GOOGLE_SCRIPT_URL,
+	} from '$env/static/public';
 
 	import { Profile, Settings, QuoteForm } from '$lib';
 
@@ -86,7 +90,7 @@
 	}
 
 	async function submitQuote() {
-		const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+		const GOOGLE_SCRIPT_URL = PUBLIC_GOOGLE_SCRIPT_URL;
 
 		try {
 			await addDoc(collection(db, 'quotes'), { ...formInfo, createdAt: new Date() });
@@ -134,7 +138,7 @@
 	}
 
 	function sendWhatsApp(message: string) {
-		const phone = import.meta.env.VITE_WHATSAPP_NUMBER;
+		const phone = PUBLIC_WHATSAPP_NUMBER;
 		const encodedMessage = encodeURIComponent(message);
 		const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
 
