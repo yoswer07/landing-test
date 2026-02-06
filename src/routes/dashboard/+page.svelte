@@ -1,17 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { auth, db } from '../../lib/firebase';
-	import { doc, getDoc, updateDoc, addDoc, collection } from 'firebase/firestore';
-	import { onAuthStateChanged, signOut } from 'firebase/auth';
-	import { updatePassword } from 'firebase/auth';
+	import { doc, getDoc, collection } from 'firebase/firestore';
+	import { onAuthStateChanged} from 'firebase/auth';
 	import { showNotify } from '$lib/toastStore';
 	import { t } from '$lib/langStore';
-	import { 
-    PUBLIC_WHATSAPP_NUMBER,
-	PUBLIC_GOOGLE_SCRIPT_URL,
-	} from '$env/static/public';
+	import { PUBLIC_WHATSAPP_NUMBER, PUBLIC_GOOGLE_SCRIPT_URL} from '$env/static/public';
 
-	import { Profile, Settings, QuoteForm } from '$lib';
+	import { Profile} from '$lib';
+
+	let Settings: any;
+	let QuoteForm: any;
 
 	let user: any = null;
 	let userData: any = {};
@@ -34,29 +33,32 @@
 	};
 
 	onMount(() => {
-		onAuthStateChanged(auth, async (firebaseUser) => {
-			if (firebaseUser) {
-				user = firebaseUser;
-				const docRef = doc(db, 'users', user.uid);
-				const docSnap = await getDoc(docRef);
 
-				if (docSnap.exists()) {
-					userData = docSnap.data();
-					formInfo = {
-						...formInfo,
-						...userData,
-						email: user.email
-					};
-				}
-				loading = false;
-			} else {
-				window.location.href = '/login';
-			}
-		});
+		import('$lib').then(mod => {
+            Settings = mod.Settings;
+            QuoteForm = mod.QuoteForm;
+        });
+
+		const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            if (firebaseUser) {
+                user = firebaseUser;
+                const docSnap = await getDoc(doc(db, 'users', user.uid));
+                if (docSnap.exists()) {
+                    userData = docSnap.data();
+                    formInfo = { ...formInfo, ...userData, email: user.email };
+                }
+                loading = false;
+            } else {
+                window.location.href = '/login';
+            }
+        });
+		return () => unsubscribe();
 	});
 
 	async function handleUpdate() {
 		try {
+			const { updateDoc } = await import('firebase/firestore');
+            const { updatePassword } = await import('firebase/auth');
 			const userRef = doc(db, 'users', user.uid);
 
 			await updateDoc(userRef, {
@@ -90,33 +92,30 @@
 	}
 
 	async function submitQuote() {
-		const GOOGLE_SCRIPT_URL = PUBLIC_GOOGLE_SCRIPT_URL;
+        try {
+            const { addDoc } = await import('firebase/firestore');
+            await addDoc(collection(db, 'quotes'), { ...formInfo, createdAt: new Date() });
 
-		try {
-			await addDoc(collection(db, 'quotes'), { ...formInfo, createdAt: new Date() });
+            await fetch(PUBLIC_GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formInfo)
+            });
 
-			const response = await fetch(GOOGLE_SCRIPT_URL, {
-				method: 'POST',
-				mode: 'no-cors',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(formInfo)
-			});
-
-			sendWhatsApp(formatQuoteMessage());
-
-			activeTab = 'perfil';
- 
-			showNotify($t.quote_toast, 'success');
-		} catch (e) {
-			console.error(e);
-			showNotify($t.con_toast, 'error');
-		}
-	}
+            sendWhatsApp(formatQuoteMessage());
+            activeTab = 'perfil';
+            showNotify($t.quote_toast, 'success');
+        } catch (e) {
+            showNotify($t.con_toast, 'error');
+        }
+    }
 
 	const handleLogout = async () => {
-		await signOut(auth);
-		window.location.href = '/';
-	};
+        const { signOut } = await import('firebase/auth');
+        await signOut(auth);
+        window.location.href = '/';
+    };
 
 	function formatQuoteMessage() {
 		return `

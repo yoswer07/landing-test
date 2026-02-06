@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Package, Truck, Box, Warehouse, Info, CircleCheck, ArrowRight } from '@lucide/svelte';
+	import { Package, Truck, CircleCheck, ArrowRight } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 	import { auth } from '../../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
