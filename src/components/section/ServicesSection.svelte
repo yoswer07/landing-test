@@ -4,7 +4,7 @@
 	import { t } from '$lib/langStore';
 </script>
 
-<section id="services" class="bg-gray-50 relative z-0 -mt-20 pb-20 pt-12 scroll-mt-56 md:-scroll-mt-4 md:pb-18">
+<section id="services" class="bg-gray-50 relative z-0 -mt-20 pb-20 pt-12 scroll-mt-76 md:-scroll-mt-4 md:pb-18">
 	<div class="container mx-auto px-6 max-w-7xl pt-16">
 		<div class="text-center mb-16 max-w-3xl mx-auto">
 			<h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mt-2">

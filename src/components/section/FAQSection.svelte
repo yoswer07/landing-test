@@ -34,7 +34,7 @@
 	];
 </script>
 
-<section id="faq" class="scroll-mt-68 md:-scroll-mt-4 py-18 md:pt-28 bg-linear-to-b from-white to-gray-50">
+<section id="faq" class="scroll-mt-88 md:-scroll-mt-4 py-18 md:pt-28 bg-linear-to-b from-white to-gray-50">
 	<div class="container mx-auto px-6 max-w-4xl">
 		<div class="text-center mb-12">
 			<h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mt-2">{$t.title_faq}</h2>
