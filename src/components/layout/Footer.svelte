@@ -1,9 +1,9 @@
 <script lang="ts">
-    import {Music2, Facebook } from '@lucide/svelte';
+    import {Music2, Facebook, Instagram } from '@lucide/svelte';
     import { t } from '$lib/langStore';
 
     const socialLinks = [
-        // { name: 'Instagram', href: '#instagram', icon: Instagram, color: 'text-pink-600' },
+        { name: 'Instagram', href: 'https://www.instagram.com/3plxpressusa', icon: Instagram, color: 'text-pink-600' },
         { name: 'Tiktok', href: 'https://www.tiktok.com/@3plxpress1', icon: Music2, color: 'text-gray-900' },
         { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61587586032189', icon: Facebook, color: 'text-blue-600' },
     ];
@@ -19,7 +19,7 @@
                 Copyright © {currentYear} {$t.by_footer} 
                 <span class="font-semibold text-white">3PL Xpress</span>
                 - {$t.design_footer} 
-                <a href="https:www.github.com/yoswer07" target="_blank" class="font-semibold text-gray-300 hover:text-primary transition duration-200">
+                <a href="https://www.github.com/yoswer07" target="_blank" class="font-semibold text-gray-300 hover:text-primary transition duration-200">
                     Yoswer A
                 </a>
             </div>
