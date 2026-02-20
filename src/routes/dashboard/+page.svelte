@@ -145,8 +145,8 @@
 	}
 </script>
 
-<div class="min-h-screen bg-gray-100 flex flex-col md:flex-row">
-	<aside class="w-full md:w-58 bg-secondary/98 text-white shrink-0 shadow-xl">
+<div class="aside_field">
+	<aside class="aside_field_colors">
 		<div class="p-6 text-xl font-bold border-b border-gray-700 hidden md:block">
 			{$t.panel_dash}
 		</div>
@@ -177,7 +177,7 @@
 
 			<button
 				on:click={handleLogout}
-				class="cursor-pointer hidden md:block w-full text-left px-6 py-3 mt-auto text-red-400 hover:bg-red-500/10 border-t border-gray-700"
+				class="close_session_button"
 			>
 				{$t.close_dash}
 			</button>

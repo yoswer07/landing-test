@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Package, Truck, CircleCheck, ArrowRight } from '@lucide/svelte';
+	import { Package, Truck, CircleCheck, ArrowRight, Box, Warehouse } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 	import { auth } from '../../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
@@ -118,28 +118,28 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             <div class="service-card border-primary/20">
                 <div class="flex items-center gap-3 mb-6">
                     <Box class="text-primary" size={24} />
-                    <h3 class="text-xl font-bold text-secondary">Suministros (Cajas)</h3>
+                    <h3 class="text-xl font-bold text-secondary">{$t.text3_price}</h3>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-gray-50 p-3 rounded-lg text-center">
-                        <p class="text-xs text-gray-500 uppercase">Pequeña</p>
-                        <p class="text-lg font-bold text-secondary">$1.60</p>
+                        <p class="text-xs text-gray-500 uppercase">{$t.text4_price}</p>
+                        <p class="text-lg font-bold text-secondary">$1.70</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-lg text-center">
-                        <p class="text-xs text-gray-500 uppercase">Mediana</p>
-                        <p class="text-lg font-bold text-secondary">$2.30</p>
+                        <p class="text-xs text-gray-500 uppercase">{$t.text5_price}</p>
+                        <p class="text-lg font-bold text-secondary">$2.40</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-lg text-center">
                         <p class="text-xs text-gray-500 uppercase">Pallet</p>
-                        <p class="text-lg font-bold text-secondary">$12</p>
+                        <p class="text-lg font-bold text-secondary">$12.1</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-lg text-center border-2 border-primary/30">
-                        <p class="text-xs text-gray-500 uppercase">Palletización</p>
-                        <p class="text-lg font-bold text-primary">$22</p>
+                        <p class="text-xs text-gray-500 uppercase">{$t.text6_price}</p>
+                        <p class="text-lg font-bold text-primary">$25</p>
                     </div>
                 </div>
             </div>
@@ -147,19 +147,19 @@
             <div class="service-card border-primary/20 flex flex-col justify-center">
                 <div class="flex items-center gap-3 mb-6">
                     <Warehouse class="text-primary" size={24} />
-                    <h3 class="text-xl font-bold text-secondary">Almacenamiento</h3>
+                    <h3 class="text-xl font-bold text-secondary">{$t.text7_price}</h3>
                 </div>
                 <div class="flex items-center justify-between bg-primary/10 p-6 rounded-xl border border-primary/20">
                     <div>
-                        <p class="text-primary font-bold text-lg">1ra Semana GRATIS</p>
-                        <p class="text-gray-600 text-sm italic">Prueba nuestro sistema sin compromiso</p>
+                        <p class="text-primary font-bold text-lg">{$t.text8_price}</p>
+                        <p class="text-gray-600 text-sm italic">{$t.text9_price}</p>
                     </div>
                     <div class="text-right">
                         <p class="text-3xl font-black text-secondary">$55</p>
-                        <p class="text-xs text-gray-500 uppercase">30 días / pallet</p>
+                        <p class="text-xs text-gray-500 uppercase">30 {$t.text10_price} / pallet</p>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 	</div>
 </section>
