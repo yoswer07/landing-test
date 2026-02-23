@@ -21,6 +21,7 @@ export const translations = {
         text_date: "Do you want to schedule your appointment?",
         text_date2: "Contact us to coordinate the receipt of your shipment.",
         contact_us: "CONTACT US",
+        contact_us2: "Contact us",
 
         title_quote: "New Logistics Quote",
         name_quote: "Name",
@@ -188,6 +189,8 @@ export const translations = {
         admin_panel2: "Weight:",
         admin_panel3:  "Qty.",
 
+        text_ws: "Hello 3PL Xpress team! I came from the website and would like to learn more about your services.",
+
     },
     es: {
         pricing_title: "Tarifas <span class='text-primary'>Transparentes</span>",
@@ -212,6 +215,7 @@ export const translations = {
         text_date: "¿Quieres agendar tu cita?",
         text_date2: "Contáctanos para coordinar la recepción de tu carga.",
         contact_us: "CONTACTANOS",
+        contact_us2: "Contactanos",
 
         title_quote: "Nueva Cotización Logística",
         name_quote: "Nombre",
@@ -378,5 +382,7 @@ export const translations = {
         admin_page5: "Siguiente",
         admin_panel2: "Peso:",
         admin_panel3:  "Cant.",
+
+        text_ws: "¡Hola equipo de 3PL Xpress! Vengo de la página web y me gustaría obtener más información sobre sus servicios.",
     }
 };

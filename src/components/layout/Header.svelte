@@ -6,15 +6,16 @@
 	import { smoothScroll } from '$lib/actions/smoothScroll';
 
 	import { locale } from '$lib/langStore';
-	import { Languages } from '@lucide/svelte';
+	import { Languages, MessageCircleMore} from '@lucide/svelte';
 
 	import { t } from '$lib/langStore';
+
+	import { PUBLIC_WHATSAPP_NUMBER } from '$env/static/public';
 
 	function toggleLang() {
 		locale.update((l) => (l === 'es' ? 'en' : 'es'));
 	}
 
-	// Variables de estado
 	let isMenuOpen = false;
 	let user: any = null;
 	let auth: any;
@@ -39,9 +40,20 @@
 	function toggleMenu() {
 		isMenuOpen = !isMenuOpen;
 	}
+
+	$: wsMessage = encodeURIComponent($t.text_ws);
 </script>
 
 <header class="sticky top-0 z-50 bg-secondary shadow-md">
+<div class="hidden md:block bg-black/20 border-b border-white/10 text-gray-200 py-2 text-xs xl:text-sm">
+        <div class="max-w-7xl mx-auto px-6 flex justify-end items-center">
+            <div class="flex gap-4 items-center font-medium">
+                <a href="https://www.instagram.com/3plxpressusa" target="_blank" class="hover:text-primary transition-colors">Instagram</a>
+                <a href="https://www.tiktok.com/@3plxpress1" target="_blank" class="hover:text-primary transition-colors">Tiktok</a>
+                <a href="https://www.facebook.com/profile.php?id=61587586032189" target="_blank" class="hover:text-primary transition-colors">Facebook</a>
+            </div>
+        </div>
+    </div>
 	<div class="container mx-auto px-6 max-w-7xl">
 		<div class="flex items-center justify-between h-20">
 			<div class="shrink-0">
@@ -49,9 +61,9 @@
 					<enhanced:img src={logo} alt="Logo" class="h-24 xl:h-32 w-auto mr-2 transition-all" />
 				</a>
 			</div>
-
-			<div class="hidden md:flex items-center gap-3 xl:gap-8">
-				<nav class="flex gap-4 xl:gap-8">
+			
+			<div class="hidden lg:flex items-center gap-3 xl:gap-8">
+				<nav class="flex gap-4 xl:gap-6">
 					{#each navLinks as link}
 						<a
 							href={link.href}
@@ -63,7 +75,7 @@
 					{/each}
 				</nav>
 
-                <div class="flex items-center bg-gray-100 rounded-lg p-0.5 xl:p-1 shrink-0">
+                <div class="flex items-center bg-gray-100 rounded-lg p-0.5 xl:p-1 shrink-0 ml-2">
                     <button
                         on:click={() => toggleLang()}
                         class="px-2 xl:px-3 py-1 text-[10px] xl:text-xs font-bold rounded-md transition-all
@@ -82,7 +94,14 @@
                     </button>
 			    </div>
 
-				<div class="hidden md:block shrink-0">
+				<div class="hidden lg:flex items-center gap-3 shrink-0">
+					<a 
+                        href="https://wa.me/{PUBLIC_WHATSAPP_NUMBER}?text={wsMessage}" 
+                        target="_blank"
+                        class="flex items-center gap-2 bg-[#25D366] hover:bg-green-600 text-white py-2 px-4 rounded-lg font-bold transition-transform hover:scale-105">
+						<MessageCircleMore />
+                        <span>{$t.contact_us2}</span>
+					</a>
 					{#if user}
 						<a href="/dashboard" class="btn-primary py-2 px-4">
 							<span class="md:max-[1024px]:hidden">{$t.btn_account_slice}</span> {$t.btn_account_slice2}
@@ -95,7 +114,7 @@
 				</div>
 			</div>
 
-			<div class="md:hidden flex items-center">
+			<div class="lg:hidden flex items-center">
 				<button aria-label="Menu-Path" on:click={toggleMenu} class="text-gray-200 hover:text-blue-600 focus:outline-none">
 					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						{#if isMenuOpen}
@@ -122,7 +141,7 @@
 	{#if isMenuOpen}
 		<div
 			id="mobile-menu"
-			class="md:hidden bg-secondary"
+			class="lg:hidden bg-secondary"
 			transition:slide={{ duration: 200, easing: quintOut }}
 		>
 			<div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-700">
@@ -183,3 +202,50 @@
 		</div>
 	{/if}
 </header>
+
+<a
+    href="https://wa.me/{PUBLIC_WHATSAPP_NUMBER}?text={wsMessage}"
+    target="_blank"
+    class="lg:hidden fixed bottom-6 right-6 z-100 bg-[#25D366] text-white p-3.5 md:p-4 rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:scale-110 hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] transition-all flex items-center justify-center"
+    aria-label="WhatsApp"
+>
+    <MessageCircleMore />
+	<span class="ribbon-text font-bold text-sm md:text-base">{$t.contact_us2}</span>
+</a>
+
+<style>
+    .ribbon-text {
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 0;
+        opacity: 0;
+        animation: slide-ribbon 6s cubic-bezier(0.85, 0, 0.15, 1) 2;
+		animation-delay: 2s;
+    }
+
+    .ribbon-text:hover {
+        max-width: 150px;
+        opacity: 1;
+        margin-left: 10px;
+        animation: none; 
+        transition: all 0.5s ease;
+    }
+
+    @keyframes slide-ribbon {
+        0%, 15% { 
+            max-width: 0; 
+            opacity: 0; 
+            margin-left: 0; 
+        }
+        25%, 75% { 
+            max-width: 150px;
+            opacity: 1; 
+            margin-left: 10px;
+        }
+        85%, 100% { 
+            max-width: 0; 
+            opacity: 0; 
+            margin-left: 0; 
+        }
+    }
+</style>

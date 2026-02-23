@@ -26,7 +26,7 @@
     ];
 </script>
 
-<section id="how-it-works" class="py-20 scroll-mt-86 md:-scroll-mt-4 md:pt-30 bg-linear-to-b from-gray-50 to-white">
+<section id="how-it-works" class="py-20 scroll-mt-86 md:scroll-mt-2 md:pt-30 bg-linear-to-b from-gray-50 to-white">
     <div class="container mx-auto px-6 max-w-7xl">
         
         <div class="text-center mb-16 max-w-3xl mx-auto">
