@@ -35,7 +35,7 @@
 </script>
 
 <section
-	class="relative -mt-8.25 text-white bg-section-main pt-10 pb-16 lg:pt-12 lg:pb-20 overflow-hidden min-h-fit lg:min-h-[60vh] flex items-center"
+	class="relative md:-mt-8.25 text-white bg-section-main pt-10 pb-16 lg:pt-12 lg:pb-20 overflow-hidden min-h-fit lg:min-h-[60vh] flex items-center"
 >
 	<div class="container mx-auto px-6 max-w-6xl relative z-10">
 		<div class="flex flex-col lg:flex-row items-center justify-between gap-12">
