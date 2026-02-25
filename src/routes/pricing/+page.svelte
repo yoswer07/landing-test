@@ -30,7 +30,7 @@
 		},
 		{
 			name: `${$t.label_quote} + Polybag`,
-			prices: ['0 - 1,000 und: $1.00', '1,001 - 3,000 und: $0.90', '3,000+ und: $0.75']
+			prices: ['0 - 1,000 und: $1.00', '1,001 - 3,000 und: $0.90', '3,000+ und: $0.85']
 		},
 		{
 			name: `${$t.label_quote} + Polybag (2-3 und)`,
