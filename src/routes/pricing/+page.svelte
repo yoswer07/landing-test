@@ -26,20 +26,21 @@
 	$: fbaServices = [
 		{
 			name: $t.label_quote,
-			prices: ['0 - 1,000 und: $0.75', '1,001 - 3,000 und: $0.65']
+			prices: ['1 - 500 und: $0.75', '501 - 1,499 und: $0.65', '1,500+ und: $0.55']
 		},
 		{
 			name: `${$t.label_quote} + Polybag`,
-			prices: ['0 - 1,000 und: $1.00', '1,001 - 3,000 und: $0.90', '3,000+ und: $0.85']
+			prices: ['0 - 500 und: $0.90', '501 - 1,500 und: $0.85', '1,501+ und: $0.85']
 		},
 		{
 			name: `${$t.label_quote} + Polybag (2-3 und)`,
-			prices: ['0 - 1,000 und: $1.25', '1,001 - 3,000 und: $1.20', '3,000+ und: $1.10']
+			prices: ['0 - 500 und: $1.10', '501 - 1,500 und: $1.05', '1,500+ und: Consultar']
 		},
 		{
 			name: 'Glass Wrapping',
-			prices: [`${$t.env_price}: $1.00`, '1 und: $1.30', 'Bundle 2-3 und: $1.80', 'Bundle 4-6 und: $2.30', 'Bundle 12 und: $2.80']
+			prices: ['1 und: $1.30', 'Bundle 2-3 und: $1.80/paquete', 'Bundle 4-6 und: $2.30/paquete', 'Bundle 12 und: $2.80/paquete']
 		}
+		// `${$t.env_price}: $1.00`
 	];
 </script>
 
@@ -127,19 +128,20 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-gray-50 p-3 rounded-lg text-center">
                         <p class="text-xs text-gray-500 uppercase">{$t.text4_price}</p>
-                        <p class="text-lg font-bold text-secondary">$1.70</p>
+                        <p class="text-lg font-bold text-secondary">$2</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-lg text-center">
                         <p class="text-xs text-gray-500 uppercase">{$t.text5_price}</p>
-                        <p class="text-lg font-bold text-secondary">$2.40</p>
+                        <p class="text-lg font-bold text-secondary">$3.50</p>
                     </div>
+					
                     <div class="bg-gray-50 p-3 rounded-lg text-center">
                         <p class="text-xs text-gray-500 uppercase">Pallet</p>
-                        <p class="text-lg font-bold text-secondary">$12.1</p>
+                        <p class="text-lg font-bold text-secondary">$12</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-lg text-center border-2 border-primary/30">
                         <p class="text-xs text-gray-500 uppercase">{$t.text6_price}</p>
-                        <p class="text-lg font-bold text-primary">$25</p>
+                        <p class="text-lg font-bold text-primary">$20</p>
                     </div>
                 </div>
             </div>
